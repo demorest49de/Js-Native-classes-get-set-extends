@@ -1,43 +1,45 @@
 <body style="background-color: #000;"></body>
 <script>
 
-  function createCar(brand, model, speed) {
-    return {
-      brand: brand,
-      model: model,
-      speed: speed,
-      // TODO функция продублируетя 100 в 100 новых объектах
-      drive() {
-        console.log(`${this.brand} ${this.model} is driving...`);
-      },
-    };
-  }
-
-  const car3 = createCar("Toyota", "Supra", 250);
-  const car4 = createCar("Honda", "Prelude", 280);
-  car3.drive();
-
-  function startEngine() {
-    console.log(`${this.brand} ${this.model} is starting the engine...`);
-  }
-
-  function CarConstructor(brand, model) {
-    this.brand = brand;
-    this.model = model;
-    this.startEngine = startEngine;
-    // return this;
-  }
-
-  // функция  становится конструктором если вызывать ее через new и
-  //  она по умолчанию вернет  объект  даже без return this.
-  const car5 = new CarConstructor("Toyota", "Fielder");
-  const car6 = new CarConstructor("Toyota", "FourRunner");
-  console.log(car5.startEngine === car6.startEngine);
-  car5.startEngine();
+  // function createCar(brand, model, speed) {
+  //   return {
+  //     brand: brand,
+  //     model: model,
+  //     speed: speed,
+  //     // TODO функция продублируетя 100 в 100 новых объектах
+  //     drive() {
+  //       console.log(`${this.brand} ${this.model} is driving...`);
+  //     },
+  //   };
+  // }
+  //
+  // const car3 = createCar("Toyota", "Supra", 250);
+  // const car4 = createCar("Honda", "Prelude", 280);
+  // car3.drive();
+  //
+  // function startEngine() {
+  //   console.log(`${this.brand} ${this.model} is starting the engine...`);
+  // }
+  //
+  // function CarConstructor(brand, model) {
+  //   this.brand = brand;
+  //   this.model = model;
+  //   this.startEngine = startEngine;
+  //   // return this;
+  // }
+  //
+  // // функция  становится конструктором если вызывать ее через new и
+  // //  она по умолчанию вернет  объект  даже без return this.
+  // const car5 = new CarConstructor("Toyota", "Fielder");
+  // const car6 = new CarConstructor("Toyota", "FourRunner");
+  // console.log(car5.startEngine === car6.startEngine);
+  // car5.startEngine();
 
   class Car {
+    #brand;
+
     constructor(brand, model, speed) {
-      this.brand = brand;
+      this.#brand = brand;
       this.model = model;
       this.speed = speed;
     }
@@ -55,11 +57,31 @@
           :
           console.log(`${car2.brand} is faster than ${car1.brand}`);
     };
+
+    get brand() {
+      return this.#brand;
+    }
+
+    #validateBrand(newBrand){
+      if(newBrand.length < 3)  {
+        throw new Error(`Brand must be at least 3 characters`);
+      }
+    }
+
+    set brand(brand) {
+      this.#validateBrand(brand);
+      this.#brand = brand;
+    }
   }
 
   const car1 = new Car("Toyota", "Corolla", 100);
   const car2 = new Car("Honda", "Accord", 80);
-  car1.compare(car2, car3);
+  // TODO resolve static method
+  //Car.compare(car1, car2);
+
+  // car1.#fly = true;
+  car1.brand = "BMW";
+  console.log(car1.brand);
 
 
 </script>
