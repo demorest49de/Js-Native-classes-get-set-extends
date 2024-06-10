@@ -1,6 +1,7 @@
 <body style="background-color: #000;"></body>
 <script>
 
+  // TODO functions
   // function createCar(brand, model, speed) {
   //   return {
   //     brand: brand,
@@ -35,53 +36,93 @@
   // console.log(car5.startEngine === car6.startEngine);
   // car5.startEngine();
 
+  // TODO classes
+
+  // class Car {
+  //   #brand;
+  //
+  //   constructor(brand, model, speed) {
+  //     this.#brand = brand;
+  //     this.model = model;
+  //     this.speed = speed;
+  //   }
+  //
+  //   drive() {
+  //     console.log(`${this.brand} is driving...`);
+  //   }
+  //
+  //   static compareCars (car1, car2) {
+  //     car1.speed === car2.speed ?
+  //       console.log(`${car1.brand} and ${car2.brand} have the same speed`)
+  //       :
+  //       car1.speed > car2.speed ?
+  //         console.log(`${car1.brand} is faster than ${car2.brand}`)
+  //         :
+  //         console.log(`${car2.brand} is faster than ${car1.brand}`);
+  //   };
+  //
+  //   get brand() {
+  //     return this.#brand;
+  //   }
+  //
+  //   #validateBrand(newBrand){
+  //     if(newBrand.length < 3)  {
+  //       throw new Error(`Brand must be at least 3 characters`);
+  //     }
+  //   }
+  //
+  //   set brand(brand) {
+  //     this.#validateBrand(brand);
+  //     this.#brand = brand;
+  //   }
+  // }
+  //
+  // const car1 = new Car("Toyota", "Corolla", 100);
+  // const car2 = new Car("Honda", "Accord", 80);
+  //
+  // Car.compareCars(car1, car2);
+  //
+  // // car1.#fly = true;
+  // car1.brand = "BMW";
+  // console.dir(Car);
+  // console.dir(car1);
+
+  // TODO extends
   class Car {
-    #brand;
+    // #brand;
 
     constructor(brand, model, speed) {
-      this.#brand = brand;
+      this.brand = brand;
       this.model = model;
       this.speed = speed;
     }
 
-    drive() {
-      console.log(`${this.brand} is driving...`);
+    startEngine()  {
+      console.log(`${this.brand} ${this.model} is started the engine...`);
     }
 
-    compare = function (car1, car2) {
-      car1.speed === car2.speed ?
-        console.log(`${car1.brand} and ${car2.brand} have the same speed`)
-        :
-        car1.speed > car2.speed ?
-          console.log(`${car1.brand} is faster than ${car2.brand}`)
-          :
-          console.log(`${car2.brand} is faster than ${car1.brand}`);
-    };
-
-    get brand() {
-      return this.#brand;
-    }
-
-    #validateBrand(newBrand){
-      if(newBrand.length < 3)  {
-        throw new Error(`Brand must be at least 3 characters`);
-      }
-    }
-
-    set brand(brand) {
-      this.#validateBrand(brand);
-      this.#brand = brand;
+    stopEngine()  {
+      console.log(`${this.brand} ${this.model} is stopped the engine...`);
     }
   }
 
-  const car1 = new Car("Toyota", "Corolla", 100);
-  const car2 = new Car("Honda", "Accord", 80);
-  // TODO resolve static method
-  //Car.compare(car1, car2);
+  class SuperCar extends Car  {
+    constructor(brand, model, speed, canFly)  {
+      super(brand, model, speed);
+      this.canFly  = canFly;
+    }
+    fly()  {
+      if(this.canFly)  {
+        console.log(`${this.brand}  ${this.model} is flying...`);
+      }
+    }
+    stopEngine()   {
+      super.stopEngine();
+      console.log(`and ${this.brand} ${this.model}  pulledover...`);
+    }
+  }
 
-  // car1.#fly = true;
-  car1.brand = "BMW";
-  console.log(car1.brand);
-
-
+  const superCar1  = new SuperCar("Toyota",  "Corolla",  100, true);
+  superCar1.fly();
+  superCar1.stopEngine();
 </script>
