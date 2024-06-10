@@ -1,25 +1,6 @@
 <body style="background-color: #000;"></body>
 <script>
 
-  class Car {
-    constructor(brand, model, speed) {
-      this.brand = brand;
-      this.model = model;
-      this.speed = speed;
-    }
-
-    drive() {
-      console.log(`${this.brand} is driving...`);
-    }
-
-    // compare= function(car1, car2){
-    //   car1.speed > car2.speed ? console.log(`${car1.brand} is faster than ${car2.brand}`) : console.log(`${car2.brand} is faster than ${car1.brand}`);
-    // }
-  }
-
-  const car1 = new Car("Toyota", "Corolla", 100);
-  const car2 = new Car("Honda", "Accord", 80);
-
   function createCar(brand, model, speed) {
     return {
       brand: brand,
@@ -36,8 +17,8 @@
   const car4 = createCar("Honda", "Prelude", 280);
   car3.drive();
 
-  function startEngine()  {
-    console.log(`${this.brand} ${this.model} is starting the engine...` );
+  function startEngine() {
+    console.log(`${this.brand} ${this.model} is starting the engine...`);
   }
 
   function CarConstructor(brand, model) {
@@ -49,28 +30,36 @@
 
   // функция  становится конструктором если вызывать ее через new и
   //  она по умолчанию вернет  объект  даже без return this.
-  const car5 = new CarConstructor("Toyota",  "Fielder");
-  const car6 = new CarConstructor("Toyota",   "FourRunner");
+  const car5 = new CarConstructor("Toyota", "Fielder");
+  const car6 = new CarConstructor("Toyota", "FourRunner");
   console.log(car5.startEngine === car6.startEngine);
   car5.startEngine();
 
+  class Car {
+    constructor(brand, model, speed) {
+      this.brand = brand;
+      this.model = model;
+      this.speed = speed;
+    }
 
+    drive() {
+      console.log(`${this.brand} is driving...`);
+    }
 
+    compare = function (car1, car2) {
+      car1.speed === car2.speed ?
+        console.log(`${car1.brand} and ${car2.brand} have the same speed`)
+        :
+        car1.speed > car2.speed ?
+          console.log(`${car1.brand} is faster than ${car2.brand}`)
+          :
+          console.log(`${car2.brand} is faster than ${car1.brand}`);
+    };
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  const car1 = new Car("Toyota", "Corolla", 100);
+  const car2 = new Car("Honda", "Accord", 80);
+  car1.compare(car2, car3);
 
 
 </script>
